@@ -1,22 +1,22 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "Gitpin",
+  "version": "0.0.1",
+  "description": "Github pin-like Application",
   "keywords": [
-    "OpenShift",
+    "Github",
     "Node.js",
     "application",
-    "openshift"
+    "mdp"
   ],
   "author": {
     "name": "OpenShift",
     "email": "ramr@example.org",
     "url": "http://www.openshift.com/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "http://un.salted.nu",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/unsalted/gitpin"
   },
   "engines": {
     "node": ">= 0.6.0",
