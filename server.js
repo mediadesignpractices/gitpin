@@ -4,8 +4,30 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var organism = require('./node/populate.js');
+var redis = require('redis');
+
 
 app.disable('x-powered-by');
+
+var database = function(){
+
+  var cnct = this;
+
+  cnct.setupVariables = function(){
+
+    cnct.host = process.env.OPENSHIFT_REDIS_DB_HOST;
+    cnct.port = process.env.OPENSHIFT_REDIS_DB_PORT || 6379;
+
+    if (typeof cnct.host === "undefined") {
+
+        console.warn('No OPENSHIFT_REDIS_DB_HOST var, using 127.0.0.1');
+        cnct.host = "127.0.0.1";
+    };
+
+  }
+
+  
+}
 
 var server = function(){
 
@@ -41,7 +63,7 @@ var server = function(){
   }
 
   strt.ioServer = function() {
-    var metagenome = new organism.Metagenome();
+  /*  var metagenome = new organism.Metagenome();
     metagenome.spark();
     var change = false;
 
@@ -59,7 +81,7 @@ var server = function(){
         }
       }, 100);
 
-    });
+    });*/
   }
 
   strt.initializeServer = function() {
@@ -77,6 +99,9 @@ Start.setupVariables();
 Start.createRoutes();
 Start.ioServer();
 Start.initializeServer();
+
+var Connect = new database();
+Connect.setupVariables();
 
 
 
