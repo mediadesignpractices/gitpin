@@ -1,0 +1,69 @@
+{
+  "metagenome": {
+    "cultures":[
+       {
+        "type": "culture",
+        "uid": "uid",
+        "color": {
+          "hue": 0.0,
+          "saturation": 0.0,
+          "brightness": 0.0
+        },
+        "old_color": {
+          "hue": 0.0,
+          "saturation": 0.0,
+          "brightness": 0.0 
+        },
+        "ratio": 0.0,
+        "layer": 0,
+        "colonies": [
+          {
+            "type": "colony",
+            "uid": "uid",
+            "point": {
+              "x": 0,
+              "y": 0
+            },
+            "radius": 0,
+            "ratio": 0.0,
+            "culture": "uid"
+          }
+        ],
+        "index": {
+          "child_cultures": [
+            "uid",
+            "uid",
+            "uid"
+          ],
+          "parent_cultures": [
+            "uid",
+            "uid",
+            "uid"
+          ],
+          "colonies": [
+            "uid",
+            "uid",
+            "uid"
+          ],
+          "radii": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "total_colonies":0
+        },
+        "initiated":"time"
+      }
+    ],
+    "index": {
+      "cultures": [
+        "uid",
+        "uid",
+        "uid"
+      ],
+      "total_cultures" : 0
+    },
+    "intiated":"time"
+  }
+}
