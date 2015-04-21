@@ -2,12 +2,36 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
+var request = require('request');
 var io = require('socket.io')(http);
 var organism = require('./node/populate.js');
 var redis = require('redis');
 
 
 app.disable('x-powered-by');
+
+var pull = function(){
+  var req= this;
+  req.getData = function(){
+
+    var options = {
+      url: 'https://api.github.com/users/unsalted/repos?page=1&per_page=100',
+      headers: {
+        'User-Agent': 'unsalted'
+      }
+    }
+
+    request(options, function (error, response, body) {
+      if (!error) {
+        var info = JSON.parse(body);
+        console.log(info); // Show the HTML for the Google homepage.
+      } else {
+        console.log('error');
+        console.warn(error);
+      }
+    });
+  }
+}
 
 var database = function(){
 
@@ -164,6 +188,8 @@ Connect.setupVariables();
 Connect.createClient();
 Connect.testClient();
 
+var Pull = new pull();
+Pull.getData();
 
 
 
