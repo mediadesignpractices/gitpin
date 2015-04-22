@@ -24,8 +24,10 @@
   },
   "dependencies": {
     "express": "~3.4.4",
+    "lodash": "^3.7.0",
     "redis": "^0.12.1",
     "request": "^2.55.0",
+    "request-redis-cache": "^0.1.0",
     "socket.io": "^1.2.0"
   },
   "devDependencies": {},
