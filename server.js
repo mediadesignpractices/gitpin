@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var request = require('request');
-var io = require('socket.io')(http);
 var redisConnect = require('./node/redisConnect.js');
 var RequestRedisCache = require('request-redis-cache');
 var _ = require('lodash');
@@ -56,8 +55,6 @@ var cache = new RequestRedisCache({
 var log = function(data){
   console.log(data);
 }
-
-// Fetch some data from a fake client
 
 var getUserData = function(user, res){
   var GitUser = new gitUser();
