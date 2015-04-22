@@ -1,0 +1,30 @@
+{
+  "name": "gitpin",
+  "version": "0.0.1",
+  "authors": [
+    "Unsalted <nick@unsalted.nu>"
+  ],
+  "description": "github #hashtag system",
+  "main": "server.js",
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "github",
+    "hashtags",
+    "mdp"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "require": "*",
+    "knockout": "~3.3.0"
+  }
+}
