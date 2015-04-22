@@ -59,19 +59,20 @@ var log = function(data){
 
 // Fetch some data from a fake client
 
-var getUserData = function(user, opt){
+var getUserData = function(user, res){
   var GitUser = new gitUser();
 
   cache.get({
 
     cacheKey: user,
-    cacheTtl: 10, // seconds
+    cacheTtl: 60, // seconds
     // Dynamic `options` to pass to our `uncachedGet` call
     requestOptions: {
       url: 'https://api.github.com/users/unsalted/repos?page=1&per_page=2',
       headers: {
         'User-Agent': 'unsalted'
-      }},
+      }
+    },
     // Action to use when we cannot retrieve data from cache
     uncachedGet: function (options, cb) {
       request(options, function (error, response, body) {
@@ -97,20 +98,63 @@ var getUserData = function(user, opt){
     }
   }, function handleData (err, data) {
     // Look at the data in our cache, '{"hello":"world"}'
-    redisClient.get(user, log(data));
+    var dtstr = JSON.stringify(data);
+    res.end(dtstr);
+    //redisClient.get(user, res.end(JSON.stringify(data)));
   });
 
 }
 
-//getUserData('unsalted');
+var server = function(){
+
+  var strt = this;
+
+  strt.setHeaders = function(){
+
+    app.use(function (req, res, next) {
+      res.setHeader('Access-Control-Allow-Origin', 'http://redis-mdptest.rhcloud.com:8000');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
+      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+      next();
+    });
+
+  }
+
+  strt.setupVariables = function() {
+    strt.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+    strt.port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+
+    if (typeof strt.ipaddress === "undefined") {
+
+        console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
+        strt.ipaddress = "127.0.0.1";
+    };
+  }
+
+  strt.createRoutes = function() {
+
+    app.use("/", express.static(__dirname + "/static"));
+    app.use("/styles", express.static(__dirname + "/styles"));
+    app.get('/api',function(req,res){
+      var user = 'unsalted';
+      getUserData(user, res);
+    });
+
+  }
+
+  strt.initializeServer = function() {
+
+    http.listen(strt.port, strt.ipaddress, function(){
+      console.log('listening on *:3000');
+    });
+  }
+
+}
+var Start = new server();
+Start.setHeaders();
+Start.setupVariables();
+Start.createRoutes();
+//Start.ioServer();
+Start.initializeServer();
 
 var GitUser = new gitUser();
-var options = {
-  url: 'https://api.github.com/users/unsalted/repos?page=1&per_page=1',
-  headers: {
-    'User-Agent': 'unsalted'
-  }
-}
-
-getUserData('unsalted', options);
-//GitUser.repos('unsalted');
