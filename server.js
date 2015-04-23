@@ -2,7 +2,6 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-//var request = require('request');
 var redisConnect = require('./node/redisConnect.js');
 var userData = require('./node/userData.js');
 var RequestRedisCache = require('request-redis-cache');
@@ -20,10 +19,6 @@ RedisConnect.testClient(client);                    //test to see if working
 var cache = new RequestRedisCache({
   redis: redisClient
 });
-
-var log = function(data){
-  console.log(data);
-}
 
 var server = function(){
 
@@ -71,6 +66,7 @@ var server = function(){
   }
 
 }
+
 var Start = new server();
 Start.setHeaders();
 Start.setupVariables();
