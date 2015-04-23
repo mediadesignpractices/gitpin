@@ -27,4 +27,4 @@ require.config({
 require( [ "knockout", "viewmodel" ], function(ko, viewModel ) {
     
 
-})
+});

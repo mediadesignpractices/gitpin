@@ -1,3 +1,0 @@
-define(['ajax'], function(ajax) {
-
-});

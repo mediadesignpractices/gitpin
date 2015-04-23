@@ -2,11 +2,6 @@ define(['knockout', 'komapping', 'ajax' ], function(ko, komapping, ajax) {
 
     ko.mapping = komapping;
 
-    function SomeModel() {
-        this.name = ko.observable();
-        this.id = ko.observable();
-    }
-
     var viewModel = function() {
        var self = this;
 
@@ -31,7 +26,7 @@ define(['knockout', 'komapping', 'ajax' ], function(ko, komapping, ajax) {
         }
 
        this.retreivedRepos = function(models) {
-        ko.mapping.fromJS(models, self.repos);
+        ko.mapping.fromJS(models, self.repos);  //map json to knockout
        }
 
        return this.getRepos();
@@ -39,6 +34,5 @@ define(['knockout', 'komapping', 'ajax' ], function(ko, komapping, ajax) {
     };
 
     ko.applyBindings(new viewModel());
-
 
 });

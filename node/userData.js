@@ -34,7 +34,6 @@ module.exports = {
                 return n.description.indexOf('#mdp') >= 0;
               });
 
-
               //*
               // yay stackoverflow: 
               // http://stackoverflow.com/questions/29811147/whitelist-a-set-of-properties-from-a-multidimensional-json-array-and-delete-the
