@@ -7,6 +7,8 @@ A knowledge repository of mdp git repos tagged with #mdp.
 Plans to build in filtering, sorting and extended tagging using isotope.
 https://github.com/metafizzy/isotope
 
+It still currently gets from a single user... me.
+
 Just getting started... as you can see it is still pretty rough.
 
 hosted api
