@@ -1,22 +1,22 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
+  "name": "gitpin",
+  "version": "0.0.1",
+  "description": "Gitpin system for mdp",
   "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
+    "github",
+    "mdp",
+    "art center",
     "openshift"
   ],
   "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url": "http://www.openshift.com/"
+    "name": "unsalted",
+    "email": "nick@unsalted.nu",
+    "url": "http://un.salted.nu.com/"
   },
-  "homepage": "http://www.openshift.com/",
+  "homepage": "http://un.salted.nu.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/openshift/origin-server"
+    "url": "https://github.com/unsalted/gitpin"
   },
   "engines": {
     "node": ">= 0.6.0",
@@ -24,12 +24,19 @@
   },
   "dependencies": {
     "express": "~3.4.4",
+    "grunt": "^0.4.5",
     "lodash": "^3.7.0",
     "redis": "^0.12.1",
     "request": "^2.55.0",
     "request-redis-cache": "^0.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "grunt-autoprefixer": "^3.0.0",
+    "grunt-bowercopy": "^1.2.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1"
+  },
   "bundleDependencies": [],
   "private": true,
   "main": "server.js"

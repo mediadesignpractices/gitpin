@@ -62,7 +62,7 @@ var getUserData = function(user, res){
   cache.get({
 
     cacheKey: user,
-    cacheTtl: 60, // seconds
+    cacheTtl: 10, // seconds
     // Dynamic `options` to pass to our `uncachedGet` call
     requestOptions: {
       url: 'https://api.github.com/users/unsalted/repos?page=1&per_page=2',
@@ -78,10 +78,23 @@ var getUserData = function(user, res){
 
           var json = JSON.parse(body);
 
-          var evens = _.remove(json, function(n) {
+          var tagged = _.remove(json, function(n) {
             return n.description.indexOf('#mdp') >= 0;
           });
-          cb(null, evens);
+
+          for (var i = tagged.length - 1; i >= 0; i--) {
+              delete tagged[i].private;
+              delete tagged[i].owner.gravatar_id;
+              delete tagged[i].owner.url;
+              delete tagged[i].owner.followers_url;
+              delete tagged[i].owner.following_url;
+              delete tagged[i].owner.gravatar_id;
+
+          };
+
+
+          cb(null, tagged);
+          console.log('uncached get');
 
         } else {
 
@@ -110,7 +123,7 @@ var server = function(){
 
     app.use(function (req, res, next) {
       res.setHeader('Access-Control-Allow-Origin', 'http://redis-mdptest.rhcloud.com:8000');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
       res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
       next();
     });
@@ -131,7 +144,7 @@ var server = function(){
   strt.createRoutes = function() {
 
     app.use("/", express.static(__dirname + "/static"));
-    app.use("/styles", express.static(__dirname + "/styles"));
+    app.use("/assets", express.static(__dirname + "/assets"));
     app.get('/api',function(req,res){
       var user = 'unsalted';
       getUserData(user, res);
@@ -153,5 +166,3 @@ Start.setupVariables();
 Start.createRoutes();
 //Start.ioServer();
 Start.initializeServer();
-
-var GitUser = new gitUser();

@@ -1,0 +1,3 @@
+define(['ajax'], function(ajax) {
+
+});

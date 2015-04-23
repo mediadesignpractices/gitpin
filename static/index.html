@@ -1,51 +1,23 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="/styles/json.css">
-    <script>
-    function output(inp) {
-      if (document.body.getElementsByTagName('pre').length >= 1){
-        var ele = document.getElementById('json');
-        document.body.removeChild(ele);
-      }
-        var ele2 = document.createElement('pre');
-        ele2.id = 'json';
-        document.body.appendChild(ele2).innerHTML = inp;
-        console.log('update');
-    }
-
-    function syntaxHighlight(json) {
-        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-            var cls = 'number';
-            if (/^"/.test(match)) {
-                if (/:$/.test(match)) {
-                    cls = 'key';
-                } else {
-                    cls = 'string';
-                }
-            } else if (/true|false/.test(match)) {
-                cls = 'boolean';
-            } else if (/null/.test(match)) {
-                cls = 'null';
-            }
-            return '<span class="' + cls + '">' + match + '</span>';
-        });
-    }
-
-
-    var socket = io();
-
-    socket.on('change state', function(obj){
-      var str = JSON.stringify(obj, undefined, 4);
-      output(syntaxHighlight(str));
-    });
-
-    </script>
+    <title>gitpin - #mdp</title>
+    <script src="assets/js/vendor/require.js" data-main="assets/js/main"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
   </head>
   <body>
-  </body>
+  <h1>gitpin</h1>
+    <div data-bind="template: {name: 'repo-template', foreach: repos}"></div>
+
+    <script id="repo-template" type="text/html">
+        <div class="repo-container">
+            <a data-bind="attr: { href: html_url, title: name}, text: name"></a><br>
+            <a data-bind="attr: { href: owner.html_url, title: name}, text: owner.login"></a>
+            <div><span>description: <span><span data-bind="text: description"></span></div>
+            <div><span>language: <span><span data-bind="text: language"></span></div>
+            <img data-bind=" attr: { src: owner.avatar_url, title: owner.login }"/>
+        </div>
+    </script>
+
+
 </html>

@@ -24,7 +24,12 @@
     "tests"
   ],
   "dependencies": {
-    "require": "*",
-    "knockout": "~3.3.0"
+    "knockout": "~3.3.0",
+    "open-iconic": "~1.1.1",
+    "postal": "~1.0.2",
+    "lodash": "~3.7.0",
+    "requirejs": "~2.1.17",
+    "knockout.mapping": "https://github.com/SteveSanderson/knockout.mapping.git#~2.4.1",
+    "microajax": "https://github.com/jserme/microajax.git"
   }
 }
