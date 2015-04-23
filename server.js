@@ -82,15 +82,20 @@ var getUserData = function(user, res){
             return n.description.indexOf('#mdp') >= 0;
           });
 
-          for (var i = tagged.length - 1; i >= 0; i--) {
-              delete tagged[i].private;
-              delete tagged[i].owner.gravatar_id;
-              delete tagged[i].owner.url;
-              delete tagged[i].owner.followers_url;
-              delete tagged[i].owner.following_url;
-              delete tagged[i].owner.gravatar_id;
+          //for (var i = tagged.length - 1; i >= 0; i--) {
+          //    //testing deleteing user data -- need better solution 
+          //    delete tagged[i].private;
+          //    delete tagged[i].owner.gravatar_id;
+          //    delete tagged[i].owner.url;
+          //    delete tagged[i].owner.followers_url;
+          //    delete tagged[i].owner.following_url;
+          //    delete tagged[i].owner.gravatar_id;
+          //
+          //};
 
-          };
+          tagged = _.map(tagged, function (t) {
+              return _.pick(t, ['id','name','html_url','description','language','size','owner','language']);
+          });
 
 
           cb(null, tagged);
