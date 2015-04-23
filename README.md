@@ -44,8 +44,11 @@ This is my first time working with some of these, noteably require and knockout.
 ## Should be obvious
 
 load dependencies: 
-`` npm install
-`` bower install
+
+`npm install`
+
+`bower install`
 
 build files
-`` grunt
+
+`grunt`
